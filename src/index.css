@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-bebas: 'Bebas Neue', sans-serif;
+
+  --color-bg-brand: #0F1117;
+  --color-surface-brand: #171A21;
+  --color-accent-primary: #FFB86B;
+  --color-accent-secondary: #D9A86C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9CA3AF;
+  --color-border-brand: rgba(255, 255, 255, 0.08);
+
+  --animate-pulse-slow: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Dynamic Themes */
+:root {
+  --color-accent-primary-rgb: 255, 184, 107;
+  --color-accent-secondary-rgb: 217, 168, 108;
+}
+
+[data-theme="orange"] {
+  --color-accent-primary: #FFB86B;
+  --color-accent-primary-rgb: 255, 184, 107;
+  --color-accent-secondary: #D9A86C;
+  --color-accent-secondary-rgb: 217, 168, 108;
+}
+
+[data-theme="blue"] {
+  --color-accent-primary: #3A86FF;
+  --color-accent-primary-rgb: 58, 134, 255;
+  --color-accent-secondary: #00C2FF;
+  --color-accent-secondary-rgb: 0, 194, 255;
+}
+
+[data-theme="purple"] {
+  --color-accent-primary: #8338EC;
+  --color-accent-primary-rgb: 131, 56, 236;
+  --color-accent-secondary: #C084FC;
+  --color-accent-secondary-rgb: 192, 132, 252;
+}
+
+[data-theme="green"] {
+  --color-accent-primary: #06D6A0;
+  --color-accent-primary-rgb: 6, 214, 160;
+  --color-accent-secondary: #34D399;
+  --color-accent-secondary-rgb: 52, 211, 153;
+}
+
+[data-theme="red"] {
+  --color-accent-primary: #FF006E;
+  --color-accent-primary-rgb: 255, 0, 110;
+  --color-accent-secondary: #FF4D6D;
+  --color-accent-secondary-rgb: 255, 77, 109;
+}
+
+[data-theme="yellow"] {
+  --color-accent-primary: #FFBE0B;
+  --color-accent-primary-rgb: 255, 190, 11;
+  --color-accent-secondary: #FFD166;
+  --color-accent-secondary-rgb: 255, 209, 102;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: #0F1117;
+  color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0F1117;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar for Premium Feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0F1117;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 184, 107, 0.2);
+}
+
+/* Dot Grid Background Overlay */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Clean Custom Shadows for Premium Depth */
+.shadow-premium {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4),
+              0 1px 2px rgba(255, 255, 255, 0.02) inset;
+}
+
+.shadow-premium-hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+              0 1px 2px rgba(var(--color-accent-primary-rgb), 0.08) inset;
+}
+
+/* Selection highlight in accent color */
+::selection {
+  background-color: rgba(var(--color-accent-primary-rgb), 0.2);
+  color: #FFFFFF;
+}
+
+/* Floating soft lighting effects */
+.ambient-lighting {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    circle at 85% 15%,
+    rgba(var(--color-accent-primary-rgb), 0.07) 0%,
+    rgba(var(--color-accent-secondary-rgb), 0.02) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft animated highlight overlay on active card */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 184, 107, 0.03),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.card-shine:hover::before {
+  left: 125%;
+}
+
+/* Custom Text Stroke Outlines for Logo and Hero */
+.text-outline-hero {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.65);
+}
+
+.text-outline-logo {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.7);
+  transition: -webkit-text-stroke 0.3s ease;
+}
+
+.group:hover .text-outline-logo {
+  -webkit-text-stroke: 0.8px #FFB86B;
+}
+
+/* Dynamic Editorial Experience Overrides */
+[data-experience="editorial"],
+[data-experience="editorial"] body {
+  background-color: #F8F8F5 !important;
+  color: #202124 !important;
+}
+
+[data-experience="editorial"] ::-webkit-scrollbar-track {
+  background: #F8F8F5 !important;
+}
+
+[data-experience="editorial"] ::-webkit-scrollbar-thumb {
+  background: rgba(32, 33, 36, 0.12) !important;
+}
+
+[data-experience="editorial"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 115, 232, 0.25) !important;
+}
+
+[data-experience="editorial"] ::selection {
+  background-color: rgba(26, 115, 232, 0.15) !important;
+  color: #202124 !important;
+}
+
