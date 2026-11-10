@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { DotGrid } from './components/DotGrid';
 import { AmbientLight } from './components/AmbientLight';
 import { Chatbot } from './components/Chatbot';
+import { SwarmRebuild } from './components/SwarmRebuild';
 import { ColorWheel } from './components/ColorWheel';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
@@ -128,6 +129,9 @@ function App() {
 
           {/* Interactive Chatbot */}
           <Chatbot />
+
+          {/* Swarm Rebuild intro + replay control */}
+          <SwarmRebuild />
         </div>
       )}
 
